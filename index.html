@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FF sensitivity UZ</title>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#090a0f;--card:#13151d;--ink:#eef1f8;--mut:#98a0b3;--line:#262a38;--acc:#ff2e3b;--acc2:#4d8dff;--onacc:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(500px 260px at 0 0,#ff2e3b2e,transparent),radial-gradient(500px 260px at 100% 0,#2d7bff2e,transparent),var(--bg);background-attachment:fixed;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+h1{font:700 30px/1.05 "Chakra Petch",system-ui,sans-serif;margin:0;letter-spacing:.5px}
+h1 span{color:var(--acc)}
+.by{color:var(--mut);font-size:13px;margin-top:6px}
+.by b{color:var(--ink)}
+select{font:inherit;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-height:44px;max-width:100%}
+.tabs{display:flex;gap:8px;margin:22px 0 16px}
+.tab{flex:1;min-height:48px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:700 16px "Chakra Petch",system-ui,sans-serif;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--acc);border-color:var(--acc);color:var(--onacc)}
+button:focus-visible,select:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+h2{font:700 20px "Chakra Petch",system-ui,sans-serif;margin:0 0 12px}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.big{min-height:84px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:700 26px "Chakra Petch",system-ui,sans-serif;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big small{font:500 13px system-ui,sans-serif;color:var(--mut)}
+.big:hover{border-color:var(--acc)}
+.back{background:none;border:0;color:var(--acc2);font:600 15px inherit;cursor:pointer;padding:8px 0;min-height:44px}
+.lay{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px}
+.lay svg{width:100%;height:auto;display:block;border-radius:6px;background:#0d1117}
+.codebar{display:flex;gap:8px;align-items:center;margin-top:10px}
+.code{flex:1;font:600 16px ui-monospace,Menlo,Consolas,monospace;background:var(--bg);border:1px dashed var(--line);border-radius:8px;padding:10px;overflow-x:auto;white-space:nowrap}
+.cp{min-height:44px;padding:0 16px;border:0;border-radius:8px;background:var(--acc);color:var(--onacc);font:700 15px system-ui,sans-serif;cursor:pointer}
+.hint{color:var(--mut);font-size:14px;margin:0 0 14px}
+.brands{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.brand{min-height:48px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:600 15px system-ui,sans-serif;cursor:pointer}
+.brand[aria-pressed="true"]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+.sel{display:flex;flex-direction:column;gap:6px;margin:16px 0}
+.sel label{font-weight:600}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+td{padding:11px 14px;border-bottom:1px solid var(--line)}
+tr:last-child td{border:0}
+td:last-child{text-align:right;font:700 20px "Chakra Petch",system-ui,sans-serif;color:var(--acc)}
+.note{color:var(--mut);font-size:13px;margin-top:10px}
+footer{margin:28px 0 8px;color:var(--mut);font-size:13px;text-align:center}
+.himg{width:100%;display:block;border-radius:6px;margin-bottom:12px}
+.tab,.big,.brand,.cp{clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.brand{font-size:14px;padding:6px}
+.crumb{color:var(--acc2);font-size:14px;min-height:20px;margin:8px 0}
+.vr small{color:var(--mut);font-weight:400}
+.ad{position:fixed;inset:0;z-index:9;background:#000e;display:flex;align-items:center;justify-content:center;padding:20px}
+.adbox{width:100%;max-width:360px;text-align:center;background:var(--card);border:2px solid var(--acc2);padding:20px}
+.adn{font:700 54px "Chakra Petch",sans-serif;color:var(--acc)}
+.adslot{height:140px;margin:12px 0;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--mut)}
+.cp:disabled{opacity:.4}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div>
+  <h1>FF sensitivity <span>UZ</span></h1>
+  <div class="by"><span id="tBy"></span>: <b>ASIDRJ</b></div>
+ </div>
+ <select id="lang" aria-label="Language">
+  <option value="uz">🇺🇿 UZ</option><option value="ru">🇷🇺 RU</option><option value="en">🇬🇧 EN</option><option value="hi">🇮🇳 IN</option><option value="id">🇮🇩 ID</option><option value="kk">🇰🇿 KZ</option><option value="ky">🇰🇬 KG</option><option value="tk">🇹🇲 TM</option><option value="tg">🇹🇯 TJ</option><option value="de">🇩🇪 DE</option>
+ </select>
+</header>
+
+<div class="tabs" role="tablist">
+ <button class="tab" id="tabH" role="tab" aria-selected="true"></button>
+ <button class="tab" id="tabS" role="tab" aria-selected="false"></button>
+</div>
+
+<section id="secH">
+ <div id="stepF">
+  <h2 id="tF"></h2>
+  <div class="row" id="fingers"></div>
+ </div>
+ <div id="stepL" hidden>
+  <button class="back" id="backH"></button>
+  <h2 id="tL"></h2>
+  <p class="hint" id="tHow"></p>
+  <div id="layouts"></div>
+ </div>
+</section>
+
+<section id="secS" hidden>
+ <button class="back" id="backS" hidden></button>
+ <div class="crumb" id="crumb"></div>
+ <h2 id="tB"></h2>
+ <div class="brands" id="opts"></div>
+ <div id="result" hidden><img id="simg" class="himg" alt="" hidden><table id="vals"></table><p class="note" id="tN"></p></div>
+</section>
+<div class="ad" id="ad" hidden><div class="adbox"><div id="adT"></div><div class="adn" id="adN">30</div><div class="adslot">AD</div><button class="cp" id="adB" disabled></button></div></div>
+
+<footer>FF sensitivity UZ · ASIDRJ</footer>
+</div>
+
+<script>
+var L={
+uz:["Sozlamalar (HUD)","Sensitivity","Necha barmoqda o'ynaysiz?","Barmoq","O'zingizga mosini tanlang","Kod","Nusxalash","Nusxalandi","Telefon brendi","Model","Brendni tanlang","Modelni tanlang","Bu boshlang'ich tavsiya. O'yinda sinab, o'zingizga moslang.","Orqaga","Kodni o'yinda HUD sozlamasiga kiriting, layout telefoningizda paydo bo'ladi.","Muallif"],
+ru:["Раскладки (HUD)","Чувствительность","На скольких пальцах играете?","Пальцы","Выберите подходящую","Код","Копировать","Скопировано","Бренд телефона","Модель","Выберите бренд","Выберите модель","Это стартовые значения. Проверьте в игре и подстройте под себя.","Назад","Введите код в настройках HUD игры, и раскладка появится на вашем телефоне.","Автор"],
+en:["Layouts (HUD)","Sensitivity","How many fingers do you play with?","Fingers","Pick the one that suits you","Code","Copy","Copied","Phone brand","Model","Choose a brand","Choose a model","This is a starting point. Test it in game and adjust.","Back","Enter the code in the game's HUD settings and the layout appears on your phone.","By"],
+hi:["लेआउट (HUD)","सेंसिटिविटी","आप कितनी उंगलियों से खेलते हैं?","उंगलियाँ","अपनी पसंद चुनें","कोड","कॉपी","कॉपी हुआ","फ़ोन ब्रांड","मॉडल","ब्रांड चुनें","मॉडल चुनें","यह शुरुआती सुझाव है। गेम में टेस्ट करके अपने हिसाब से बदलें।","वापस","गेम की HUD सेटिंग में कोड डालें, लेआउट आपके फ़ोन पर आ जाएगा।","निर्माता"],
+id:["Layout (HUD)","Sensitivitas","Main pakai berapa jari?","Jari","Pilih yang cocok","Kode","Salin","Tersalin","Merek HP","Model","Pilih merek","Pilih model","Ini titik awal. Coba di game lalu sesuaikan.","Kembali","Masukkan kode di pengaturan HUD game, layout muncul di HP kamu.","Pembuat"],
+kk:["Орналасу (HUD)","Сезімталдық","Неше саусақпен ойнайсыз?","Саусақ","Өзіңізге ыңғайлысын таңдаңыз","Код","Көшіру","Көшірілді","Телефон бренді","Модель","Брендті таңдаңыз","Модельді таңдаңыз","Бұл бастапқы ұсыныс. Ойында тексеріп, өзіңізге бейімдеңіз.","Артқа","Кодты ойынның HUD баптауына енгізіңіз, орналасу телефоныңызда пайда болады.","Автор"],
+ky:["Жайгашуу (HUD)","Сезгичтик","Канча манжа менен ойнойсуз?","Манжа","Өзүңүзгө ылайыктуусун тандаңыз","Код","Көчүрүү","Көчүрүлдү","Телефон бренди","Модель","Брендди тандаңыз","Моделди тандаңыз","Бул баштапкы сунуш. Оюндан сынап, өзүңүзгө ылайыктаңыз.","Артка","Кодду оюндун HUD жөндөөсүнө киргизиңиз, жайгашуу телефонуңузда пайда болот.","Автор"],
+tk:["Ýerleşiş (HUD)","Sensitivity","Näçe barmak bilen oýnaýarsyňyz?","Barmak","Özüňize laýyk bolanyny saýlaň","Kod","Göçür","Göçürildi","Telefon brendi","Model","Brendi saýlaň","Modeli saýlaň","Bu başlangyç maslahat. Oýunda synap, özüňize görä sazlaň.","Yza","Kody oýnuň HUD sazlamasyna giriziň, ýerleşiş telefonyňyzda peýda bolar.","Awtor"],
+tg:["Ҷойгиршавӣ (HUD)","Ҳассосият","Бо чанд ангушт бозӣ мекунед?","Ангушт","Ҳамонеро, ки ба шумо мувофиқ аст, интихоб кунед","Код","Нусхабардорӣ","Нусха шуд","Бренди телефон","Модел","Брендро интихоб кунед","Моделро интихоб кунед","Ин пешниҳоди ибтидоӣ аст. Дар бозӣ санҷед ва мувофиқ кунед.","Бозгашт","Кодро дар танзимоти HUD-и бозӣ ворид кунед, ҷойгиршавӣ дар телефони шумо пайдо мешавад.","Муаллиф"],
+de:["Layouts (HUD)","Empfindlichkeit","Mit wie vielen Fingern spielst du?","Finger","Wähle das Passende","Code","Kopieren","Kopiert","Handymarke","Modell","Marke wählen","Modell wählen","Das ist ein Startwert. Teste ihn im Spiel und passe ihn an.","Zurück","Gib den Code in den HUD-Einstellungen des Spiels ein, das Layout erscheint auf deinem Handy.","Von"]
+};
+
+var X={uz:["Seriyani tanlang","Reklama","Reklamadan keyin ochiladi","Bepul","Davom etish"],ru:["Выберите серию","Реклама","Откроется после рекламы","Бесплатно","Продолжить"],en:["Choose a series","Ad","Unlocks after an ad","Free","Continue"],hi:["सीरीज़ चुनें","विज्ञापन","विज्ञापन के बाद खुलेगा","मुफ़्त","आगे बढ़ें"],id:["Pilih seri","Iklan","Terbuka setelah iklan","Gratis","Lanjut"],kk:["Серияны таңдаңыз","Жарнама","Жарнамадан кейін ашылады","Тегін","Жалғастыру"],ky:["Серияны тандаңыз","Жарнама","Жарнамадан кийин ачылат","Бекер","Улантуу"],tk:["Seriýany saýlaň","Mahabat","Mahabatdan soň açylýar","Mugt","Dowam et"],tg:["Серияро интихоб кунед","Реклама","Баъди реклама кушода мешавад","Ройгон","Идома додан"],de:["Serie wählen","Werbung","Wird nach Werbung freigeschaltet","Kostenlos","Weiter"]};
+for(var k in X)L[k]=L[k].concat(X[k]);
+var IMG="images/"; /* rasmlar papkasi: images/sens/... va images/hud/... */
+function bust(){return "?h="+Math.floor(Date.now()/3600000)}
+function sl(x){return x.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+var AD_SECONDS=30; /* haqiqiy reklama (AdMob) shu ad() funksiyasiga ulanadi */
+/* HUD kodlari: o'z haqiqiy kodlaringizni shu yerga yozing (har barmoq soniga 3 tadan) */
+var CODES={
+2:["FFUZ-2A-0001","FFUZ-2B-0002","FFUZ-2C-0003"],
+3:["FFUZ-3A-0001","FFUZ-3B-0002","FFUZ-3C-0003"],
+4:["FFUZ-4A-0001","FFUZ-4B-0002","FFUZ-4C-0003"]
+};
+
+function a(x){return x.split(",")}
+var P={
+"Samsung":{"S":a("S7,S7 Edge,S8,S8+,S9,S9+,S10e,S10,S10+,S20,S20+,S20 Ultra,S20 FE,S21,S21+,S21 Ultra,S21 FE,S22,S22+,S22 Ultra,S23,S23+,S23 Ultra,S23 FE,S24,S24+,S24 Ultra,S24 FE,S25,S25+,S25 Ultra"),
+"Note":a("Note 8,Note 9,Note 10,Note 10+,Note 10 Lite,Note 20,Note 20 Ultra"),
+"A":a("A10,A10s,A11,A12,A13,A14,A15,A16,A20,A20s,A21s,A22,A23,A24,A25,A30,A30s,A31,A32,A33,A34,A35,A36,A50,A50s,A51,A52,A52s,A53,A54,A55,A56,A70,A71,A72,A73"),
+"M / F":a("M10,M11,M12,M13,M14,M15,M20,M21,M22,M23,M30s,M31,M32,M33,M34,M35,M51,M52,M53,M54,M55,F12,F13,F14,F15,F22,F23,F34,F41,F42,F54,F55,F62"),
+"Z Fold / Flip":a("Z Fold 2,Z Fold 3,Z Fold 4,Z Fold 5,Z Fold 6,Z Fold 7,Z Flip,Z Flip 3,Z Flip 4,Z Flip 5,Z Flip 6,Z Flip 7")},
+"Xiaomi":a("Mi 6,Mi 8,Mi 9,Mi 9T,Mi 10,Mi 10T,Mi 10T Pro,Mi 11,Mi 11 Lite,Mi 11T,Mi 11T Pro,12,12 Pro,12T,12T Pro,13,13 Pro,13T,13T Pro,14,14 Pro,14T,14T Pro,15,15 Ultra,Mix Fold 3,Mix Flip"),
+"Redmi":a("5,5A,6,6A,7,7A,8,8A,9,9A,9C,9T,10,10A,10C,12,12C,13,13C,14C,Note 5,Note 6 Pro,Note 7,Note 8,Note 8 Pro,Note 9,Note 9 Pro,Note 10,Note 10 Pro,Note 11,Note 11 Pro,Note 12,Note 12 Pro,Note 13,Note 13 Pro,Note 14,Note 14 Pro,K20,K30,K40,K50,K60,K70"),
+"Poco":a("C3,C31,C40,C50,C55,C65,M3,M4 Pro,M5,M6,M6 Pro,X3,X3 NFC,X3 Pro,X4 Pro,X5,X5 Pro,X6,X6 Pro,X7,X7 Pro,F1,F2 Pro,F3,F4,F4 GT,F5,F5 Pro,F6,F6 Pro,F7"),
+"Realme":a("5,6,7,8,9,10,11,12,12 Pro,13,13 Pro,C11,C15,C21,C25,C30,C33,C35,C53,C55,C61,C63,GT,GT Neo 2,GT Neo 3,GT 2 Pro,GT 5,GT 6,Narzo 30,Narzo 50,Narzo 60"),
+"Oppo":a("A15,A16,A17,A31,A53,A54,A57,A58,A74,A78,A79,A98,F11,F19,Reno 2,Reno 4,Reno 5,Reno 6,Reno 7,Reno 8,Reno 10,Reno 11,Reno 12,Find X2,Find X3,Find X5,Find X6,Find X7,Find N2 Flip"),
+"Vivo":a("Y11,Y12,Y15,Y17,Y20,Y21,Y22,Y27,Y28,Y33s,Y36,Y51,Y53s,Y91,V15,V17,V19,V20,V21,V23,V25,V27,V29,V30,V40,X50,X60,X70,X80,X90,X100,iQOO 7,iQOO 9,iQOO 11,iQOO 12,iQOO Neo 9"),
+"Infinix":a("Hot 8,Hot 9,Hot 10,Hot 11,Hot 12,Hot 20,Hot 30,Hot 40,Hot 50,Note 8,Note 10,Note 11,Note 12,Note 30,Note 40,Note 50,Smart 6,Smart 7,Smart 8,Zero 20,Zero 30,Zero 40,Zero Ultra"),
+"Tecno":a("Spark 5,Spark 6,Spark 7,Spark 8,Spark 9,Spark 10,Spark 20,Spark 30,Camon 16,Camon 17,Camon 18,Camon 19,Camon 20,Camon 30,Pova 2,Pova 3,Pova 4,Pova 5,Pova 6,Phantom X,Phantom X2,Phantom V Fold"),
+"Huawei":a("P10,P20,P30,P40,P50,P60,Mate 10,Mate 20,Mate 30,Mate 40,Mate 50,Mate 60,Nova 5T,Nova 7,Nova 9,Nova 10,Nova 11,Y6p,Y7a,Y9a"),
+"Honor":a("8X,9X,10,20,50,70,90,200,X6,X7,X8,X9,Magic 4,Magic 5,Magic 6,Magic V2"),
+"OnePlus":a("5,6,7,7 Pro,7T,8,8 Pro,8T,9,9 Pro,10 Pro,10T,11,12,13,Nord,Nord 2,Nord CE,Nord 3,Nord 4"),
+"Motorola":a("Moto G7,Moto G8,Moto G9,Moto G10,Moto G20,Moto G30,Moto G50,Moto G60,Moto G73,Moto G84,Edge 20,Edge 30,Edge 40,Edge 50,Razr 40,Razr 50"),
+"iPhone":a("7,7 Plus,8,8 Plus,X,XR,XS,XS Max,11,11 Pro,11 Pro Max,SE 2020,SE 2022,12 mini,12,12 Pro,12 Pro Max,13 mini,13,13 Pro,13 Pro Max,14,14 Plus,14 Pro,14 Pro Max,15,15 Plus,15 Pro,15 Pro Max,16,16 Plus,16 Pro,16 Pro Max,17")
+};
+var BASE=[["General",[98,96,94]],["Red Dot",[95,92,90]],["2x Scope",[92,88,85]],["4x Scope",[88,84,80]],["AWM",[75,70,65]],["Free Look",[60,55,50]]];
+var VN=["No DPI","DPI","VIP","VIP Pro"],S=[],V=null;
+function hs(n){for(var i=0,h=0;i<n.length;i++)h+=n.charCodeAt(i);return h}
+function tier(s,n){if(/^(S|Note|Z Fold \/ Flip)$/.test(s))return 2;if(/Ultra|Pro|Max|GT|Fold|Flip|\+|Magic|Find|iQOO|Phantom|Zero/.test(n))return 2;return hs(n)%3?0:1}
+function ad(cb){var o=$("ad"),n=AD_SECONDS,b=$("adB");$("adT").textContent=T[17];b.textContent=T[20];b.disabled=true;$("adN").textContent=n;o.hidden=false;
+ var t=setInterval(function(){n--;$("adN").textContent=n;if(n<=0){clearInterval(t);b.disabled=false}},1000);
+ b.onclick=function(){o.hidden=true;cb()}}
+
+var $=function(i){return document.getElementById(i)};
+var T=L.uz,lang="uz",fing=null,brand=null;
+
+function svgFor(n,v){
+ var dy=[0,-8,8][v],dx=[0,-6,6][v],o="";
+ function c(x,y,r,t,col){o+='<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+col+'" fill-opacity=".85" stroke="#fff" stroke-opacity=".5"/><text x="'+x+'" y="'+(y+2.5)+'" font-size="7" fill="#fff" text-anchor="middle" font-family="sans-serif">'+t+'</text>'}
+ o+='<rect x="1" y="1" width="198" height="98" rx="8" fill="none" stroke="#39414f"/>';
+ c(30,68,16,"","#39414f");c(30,68,6,"","#9aa1ad");
+ c(172+dx/2,60,7,"J","#2d7bff");c(150,80,6,"C","#2d7bff");
+ c(170+dx,34+dy,11,"FIRE","#ff2e3b");
+ if(n>=3)c(34-dx,36+dy,9,"FIRE","#ff2e3b");
+ if(n>=4)c(150+dx,50-dy/2,7,"R","#ff2e3b");
+ c(100,10,5,"M","#39414f");
+ return '<svg viewBox="0 0 200 100" role="img" aria-label="HUD layout">'+o+'</svg>'
+}
+
+function setLang(l){
+ lang=l;T=L[l];
+ $("tabH").textContent=T[0];$("tabS").textContent=T[1];
+ $("tF").textContent=T[2];$("tL").textContent=T[4];$("tHow").textContent=T[14];
+ $("tN").textContent=T[12];$("backS").textContent="← "+T[13];
+ $("backH").textContent="← "+T[13];$("tBy").textContent=T[15];
+ document.documentElement.lang=l;$("lang").value=l;
+ try{localStorage.setItem("ffuz-lang",l)}catch(e){}
+ drawFingers();if(fing)drawLayouts();drawS();
+}
+
+function drawFingers(){
+ $("fingers").innerHTML=[2,3,4].map(function(n){return '<button class="big" data-n="'+n+'">'+n+'<small>'+T[3]+'</small></button>'}).join("");
+ [].forEach.call($("fingers").children,function(b){b.onclick=function(){fing=+b.dataset.n;$("stepF").hidden=true;$("stepL").hidden=false;drawLayouts();window.scrollTo(0,0)}})
+}
+
+function drawLayouts(){
+ $("layouts").innerHTML=CODES[fing].map(function(code,i){
+  return '<div class="lay">'+'<img class="himg" src="'+IMG+'hud/'+fing+'-'+(i+1)+'.jpg'+bust()+'" alt="" onerror="this.outerHTML=svgFor('+fing+','+i+')">'+'<div class="codebar"><div class="code">'+code+'</div><button class="cp" data-c="'+code+'">'+T[6]+'</button></div></div>'
+ }).join("");
+ [].forEach.call($("layouts").querySelectorAll(".cp"),function(b){b.onclick=function(){
+  var t=b.dataset.c;
+  function done(){b.textContent=T[7];setTimeout(function(){b.textContent=T[6]},1500)}
+  ad(function(){b.previousSibling.textContent=t;try{navigator.clipboard.writeText(t).then(done,done)}catch(e){done()}})
+ }})
+}
+
+function drawS(){
+ var b=S[0],ser=b&&!Array.isArray(P[b]),need=ser?3:2,o=$("opts"),h=T[10],it;
+ $("backS").hidden=!b;$("result").hidden=true;
+ $("crumb").textContent=S.concat(V==null?[]:[VN[V]]).join(" › ");
+ if(b&&S.length==1&&ser){h=T[16];it=Object.keys(P[b])}
+ else if(b&&S.length<need){h=T[11];it=ser?P[b][S[1]]:P[b]}
+ else if(b)h=S[S.length-1];
+ else it=Object.keys(P);
+ $("tB").textContent=h;
+ if(V!=null){
+  o.innerHTML="";var m=S[S.length-1],t=tier(ser?S[1]:"",m),f=(hs(m)%5)-2+[0,2,4,6][V];
+  var rows=BASE.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+Math.min(100,r[1][t]+f)+'</td></tr>'});
+  if(V%2)rows.push('<tr><td>DPI</td><td>'+[360,400,420][t]+'</td></tr>');
+  $("vals").innerHTML=rows.join("");$("vals").hidden=false;
+  var im=$("simg");im.hidden=true;
+  im.onload=function(){im.hidden=false;$("vals").hidden=true};
+  im.onerror=function(){im.hidden=true;$("vals").hidden=false};
+  im.src=IMG+"sens/"+sl(b+" "+m)+"-"+sl(VN[V])+".jpg"+bust();
+  $("result").hidden=false;return}
+ if(it){
+  o.innerHTML=it.map(function(x){return '<button class="brand">'+x+'</button>'}).join("");
+  [].forEach.call(o.children,function(e){e.onclick=function(){S.push(e.textContent);drawS();window.scrollTo(0,0)}});
+ }else{
+  o.innerHTML=VN.map(function(v,i){return '<button class="brand vr"><b>'+v+'</b><br><small>'+(i<2?T[19]:T[18])+'</small></button>'}).join("");
+  [].forEach.call(o.children,function(e,i){e.onclick=function(){if(i<2){V=i;drawS()}else ad(function(){V=i;drawS()})}});
+ }
+}
+
+function tab(s){
+ $("secH").hidden=s;$("secS").hidden=!s;
+ $("tabH").setAttribute("aria-selected",!s);$("tabS").setAttribute("aria-selected",s);
+}
+$("tabH").onclick=function(){tab(false)};
+$("tabS").onclick=function(){tab(true)};
+$("backH").onclick=function(){fing=null;$("stepL").hidden=true;$("stepF").hidden=false};
+$("backS").onclick=function(){if(V!=null)V=null;else S.pop();drawS()};
+$("lang").onchange=function(){setLang(this.value)};
+
+var s="uz";try{s=localStorage.getItem("ffuz-lang")||"uz"}catch(e){}
+setLang(L[s]?s:"uz");
+</script>
+</body>
+</html>
