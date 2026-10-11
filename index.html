@@ -117,7 +117,7 @@ var X={uz:["Seriyani tanlang","Reklama","Reklamadan keyin ochiladi","Bepul","Dav
 for(var k in X)L[k]=L[k].concat(X[k]);
 var IMG="images/"; /* rasmlar papkasi: images/sens/... va images/hud/... */
 function bust(){return "?h="+Math.floor(Date.now()/3600000)}
-function sl(x){return x.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+function sl(x){return x.toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
 var AD_SECONDS=30; /* haqiqiy reklama (AdMob) shu ad() funksiyasiga ulanadi */
 /* HUD kodlari: o'z haqiqiy kodlaringizni shu yerga yozing (har barmoq soniga 3 tadan) */
 var CODES={
