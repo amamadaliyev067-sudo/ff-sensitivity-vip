@@ -54,6 +54,19 @@ footer{margin:28px 0 8px;color:var(--mut);font-size:13px;text-align:center}
 .adn{font:700 54px "Chakra Petch",sans-serif;color:var(--acc)}
 .adslot{height:140px;margin:12px 0;border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;color:var(--mut)}
 .cp:disabled{opacity:.4}
+.tag{color:var(--mut);margin:18px 0 14px;font-size:15px}
+.card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;min-height:170px;margin:0 0 16px;padding:20px;color:var(--ink);cursor:pointer;border:2px solid transparent;border-radius:22px;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,var(--acc),var(--acc2)) border-box;box-shadow:0 0 26px #ff2e3b30;font:inherit}
+.card .ic{font-size:46px;line-height:1}
+.card b{font:700 22px "Chakra Petch",system-ui,sans-serif}
+.card small{color:var(--mut);font-size:14px}
+.sc{background:var(--card);border-radius:14px;padding:6px 16px}
+.sr{padding:12px 0}
+.sh{display:flex;justify-content:space-between;font-weight:600}
+.sh b{font-family:"Chakra Petch",system-ui,sans-serif}
+.bar{height:5px;border-radius:3px;background:var(--line);margin-top:7px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc))}
+.sf{margin-top:12px;background:var(--card);border-radius:14px;padding:14px;text-align:center;font-weight:700}
+.sf i{display:inline-block;width:1px;height:16px;background:var(--mut);margin:0 14px;vertical-align:middle}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -69,13 +82,15 @@ footer{margin:28px 0 8px;color:var(--mut);font-size:13px;text-align:center}
  </select>
 </header>
 
-<div class="tabs" role="tablist">
- <button class="tab" id="tabH" role="tab" aria-selected="true"></button>
- <button class="tab" id="tabS" role="tab" aria-selected="false"></button>
-</div>
+<section id="home">
+ <p class="tag" id="tTag"></p>
+ <button class="card" id="cS"><span class="ic">📱</span><b id="cST"></b><small id="cSS"></small></button>
+ <button class="card" id="cH"><span class="ic">✋</span><b id="cHT"></b><small id="cHS"></small></button>
+</section>
 
 <section id="secH">
  <div id="stepF">
+  <button class="back" id="backF"></button>
   <h2 id="tF"></h2>
   <div class="row" id="fingers"></div>
  </div>
@@ -88,11 +103,11 @@ footer{margin:28px 0 8px;color:var(--mut);font-size:13px;text-align:center}
 </section>
 
 <section id="secS" hidden>
- <button class="back" id="backS" hidden></button>
+ <button class="back" id="backS"></button>
  <div class="crumb" id="crumb"></div>
  <h2 id="tB"></h2>
  <div class="brands" id="opts"></div>
- <div id="result" hidden><img id="simg" class="himg" alt="" hidden><table id="vals"></table><p class="note" id="tN"></p></div>
+ <div id="result" hidden><img id="simg" class="himg" alt="" hidden><div id="vals"></div><p class="note" id="tN"></p></div>
 </section>
 <div class="ad" id="ad" hidden><div class="adbox"><div id="adT"></div><div class="adn" id="adN">30</div><div class="adslot">AD</div><button class="cp" id="adB" disabled></button></div></div>
 
@@ -118,12 +133,15 @@ for(var k in X)L[k]=L[k].concat(X[k]);
 var IMG="images/"; /* rasmlar papkasi: images/sens/... va images/hud/... */
 function bust(){return "?h="+Math.floor(Date.now()/3600000)}
 function sl(x){return x.toLowerCase().replace(/\+/g," plus ").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+var Y={uz:["Telefon brendlari","Telefon modelini tanlang","Barmoq sozlamasi","Boshqaruv tugmalari joylashuvi","Tezkor sozlamalar markazi"],ru:["Бренды телефонов","Выберите модель телефона","Настройка пальцев","Расположение кнопок управления","Центр быстрых настроек"],en:["Phone brands","Choose your phone model","Finger setup","Control button layout","Quick settings hub"],hi:["फ़ोन ब्रांड","अपना फ़ोन मॉडल चुनें","उंगलियों की सेटिंग","कंट्रोल बटन का लेआउट","तेज़ सेटिंग्स केंद्र"],id:["Merek HP","Pilih model HP kamu","Pengaturan jari","Tata letak tombol kontrol","Pusat pengaturan cepat"],kk:["Телефон брендтері","Телефон моделін таңдаңыз","Саусақ баптауы","Басқару түймелерінің орналасуы","Жылдам баптаулар орталығы"],ky:["Телефон бренддери","Телефон моделин тандаңыз","Манжа жөндөөсү","Башкаруу баскычтарынын жайгашуусу","Тез жөндөөлөр борбору"],tk:["Telefon brendleri","Telefon modelini saýlaň","Barmak sazlamasy","Dolandyryş düwmeleriniň ýerleşişi","Çalt sazlamalar merkezi"],tg:["Брендҳои телефон","Модели телефонро интихоб кунед","Танзими ангушт","Ҷойгиршавии тугмаҳои идора","Маркази танзимоти зуд"],de:["Handymarken","Wähle dein Handymodell","Fingereinstellung","Anordnung der Steuertasten","Zentrale für schnelle Einstellungen"]};
+for(var k in Y)L[k]=L[k].concat(Y[k]);
+var ADS_ON=false; /* reklama yoqilganda true qiling */
 var AD_SECONDS=30; /* haqiqiy reklama (AdMob) shu ad() funksiyasiga ulanadi */
 /* HUD kodlari: o'z haqiqiy kodlaringizni shu yerga yozing (har barmoq soniga 3 tadan) */
 var CODES={
-2:["FFUZ-2A-0001","FFUZ-2B-0002","FFUZ-2C-0003"],
-3:["FFUZ-3A-0001","FFUZ-3B-0002","FFUZ-3C-0003"],
-4:["FFUZ-4A-0001","FFUZ-4B-0002","FFUZ-4C-0003"]
+2:["#FFHUDT6O3j8fkQ4FPo7eO","#FFHUDT6O3jgFqXxZPo7eP","#FFHUDT6O3jgFqXxZPo7eP"],
+3:["#FFHUDT6O3j/b4mClPo7eO","#FFHUDT6O3jgIVcuBPo7eM","#FFHUDT6O3jGHYC6tPo7eM"],
+4:["#FFHUDT6O3jiT1TYBPo7eO","#FFHUDT6O3ji9+VBlPo7eM","#FFHUDT6O3jiBCL/FPo7eO"]
 };
 
 function a(x){return x.split(",")}
@@ -134,24 +152,33 @@ var P={
 "M / F":a("M10,M11,M12,M13,M14,M15,M20,M21,M22,M23,M30s,M31,M32,M33,M34,M35,M51,M52,M53,M54,M55,F12,F13,F14,F15,F22,F23,F34,F41,F42,F54,F55,F62"),
 "Z Fold / Flip":a("Z Fold 2,Z Fold 3,Z Fold 4,Z Fold 5,Z Fold 6,Z Fold 7,Z Flip,Z Flip 3,Z Flip 4,Z Flip 5,Z Flip 6,Z Flip 7")},
 "Xiaomi":a("Mi 6,Mi 8,Mi 9,Mi 9T,Mi 10,Mi 10T,Mi 10T Pro,Mi 11,Mi 11 Lite,Mi 11T,Mi 11T Pro,12,12 Pro,12T,12T Pro,13,13 Pro,13T,13T Pro,14,14 Pro,14T,14T Pro,15,15 Ultra,Mix Fold 3,Mix Flip"),
-"Redmi":a("5,5A,6,6A,7,7A,8,8A,9,9A,9C,9T,10,10A,10C,12,12C,13,13C,14C,Note 5,Note 6 Pro,Note 7,Note 8,Note 8 Pro,Note 9,Note 9 Pro,Note 10,Note 10 Pro,Note 11,Note 11 Pro,Note 12,Note 12 Pro,Note 13,Note 13 Pro,Note 14,Note 14 Pro,K20,K30,K40,K50,K60,K70"),
+"Redmi":{"Asosiy":a("3S,4,4A,4X,5,5A,5 Plus,6,6A,6 Pro,7,7A,8,8A,9,9A,9C,9i,9T,9 Power,9 Prime,10,10A,10C,10 Prime,10 5G,12,12C,12 5G,13,13C,13C 5G,13R,14C,14C 5G,15,15 5G,15C,15C 5G"),
+"Note":a("Note 4,Note 5,Note 5 Pro,Note 6 Pro,Note 7,Note 7 Pro,Note 7S,Note 8,Note 8T,Note 8 Pro,Note 9,Note 9S,Note 9T,Note 9 Pro,Note 9 Pro Max,Note 10,Note 10S,Note 10T,Note 10 5G,Note 10 Pro,Note 10 Pro Max,Note 11,Note 11E,Note 11S,Note 11T,Note 11 Pro,Note 11 Pro+,Note 12,Note 12S,Note 12R,Note 12 5G,Note 12 Pro,Note 12 Pro+,Note 13,Note 13R,Note 13 Pro,Note 13 Pro+,Note 14,Note 14S,Note 14 Pro,Note 14 Pro+,Note 15,Note 15 Pro,Note 15 Pro+"),
+"K":a("K20,K20 Pro,K30,K30 Pro,K40,K40 Pro,K50,K50 Pro,K60,K60 Pro,K70,K70 Pro,K80,K80 Pro"),
+"A":a("A1,A2,A3,A4 5G,A5")},
 "Poco":a("C3,C31,C40,C50,C55,C65,M3,M4 Pro,M5,M6,M6 Pro,X3,X3 NFC,X3 Pro,X4 Pro,X5,X5 Pro,X6,X6 Pro,X7,X7 Pro,F1,F2 Pro,F3,F4,F4 GT,F5,F5 Pro,F6,F6 Pro,F7"),
 "Realme":a("5,6,7,8,9,10,11,12,12 Pro,13,13 Pro,C11,C15,C21,C25,C30,C33,C35,C53,C55,C61,C63,GT,GT Neo 2,GT Neo 3,GT 2 Pro,GT 5,GT 6,Narzo 30,Narzo 50,Narzo 60"),
 "Oppo":a("A15,A16,A17,A31,A53,A54,A57,A58,A74,A78,A79,A98,F11,F19,Reno 2,Reno 4,Reno 5,Reno 6,Reno 7,Reno 8,Reno 10,Reno 11,Reno 12,Find X2,Find X3,Find X5,Find X6,Find X7,Find N2 Flip"),
 "Vivo":a("Y11,Y12,Y15,Y17,Y20,Y21,Y22,Y27,Y28,Y33s,Y36,Y51,Y53s,Y91,V15,V17,V19,V20,V21,V23,V25,V27,V29,V30,V40,X50,X60,X70,X80,X90,X100,iQOO 7,iQOO 9,iQOO 11,iQOO 12,iQOO Neo 9"),
-"Infinix":a("Hot 8,Hot 9,Hot 10,Hot 11,Hot 12,Hot 20,Hot 30,Hot 40,Hot 50,Note 8,Note 10,Note 11,Note 12,Note 30,Note 40,Note 50,Smart 6,Smart 7,Smart 8,Zero 20,Zero 30,Zero 40,Zero Ultra"),
+"Infinix":{"Hot":a("Hot 4,Hot 5,Hot 6,Hot 6 Pro,Hot 7,Hot 8,Hot 9,Hot 9 Play,Hot 9 Pro,Hot 10,Hot 10 Play,Hot 10 Lite,Hot 10i,Hot 10s,Hot 11,Hot 11 Play,Hot 11S,Hot 12,Hot 12 Play,Hot 12i,Hot 12 Pro,Hot 20,Hot 20 5G,Hot 20 Play,Hot 20i,Hot 20S,Hot 30,Hot 30 Play,Hot 30i,Hot 30 5G,Hot 40,Hot 40i,Hot 40 Pro,Hot 50,Hot 50i,Hot 50 Pro,Hot 50 Pro+,Hot 60,Hot 60i,Hot 60 Pro,Hot 60 Pro+,Hot 70,Hot 70 Pro"),
+"Note":a("Note 7,Note 8,Note 8i,Note 10,Note 10 Pro,Note 11,Note 11S,Note 11 Pro,Note 12,Note 12 Pro,Note 12 Turbo,Note 12 VIP,Note 30,Note 30 Pro,Note 30 VIP,Note 40,Note 40X,Note 40 Pro,Note 40 Pro+,Note 50,Note 50s,Note 50X,Note 50 Pro,Note 50 Pro+,Note 60,Note 60 Pro,Note 60 Ultra,Note Edge"),
+"Smart":a("Smart 4,Smart 5,Smart 6,Smart 6 Plus,Smart 7,Smart 7 HD,Smart 8,Smart 8 HD,Smart 8 Pro,Smart 9,Smart 10,Smart 10 HD,Smart 10 Plus,Smart 20"),
+"Zero":a("Zero 5,Zero 8,Zero X,Zero X Pro,Zero 20,Zero 30 4G,Zero 30 5G,Zero 40 4G,Zero 40 5G,Zero Ultra"),
+"GT":a("GT 10 Pro,GT 20 Pro,GT 30,GT 30 Pro,GT 50 Pro")},
 "Tecno":a("Spark 5,Spark 6,Spark 7,Spark 8,Spark 9,Spark 10,Spark 20,Spark 30,Camon 16,Camon 17,Camon 18,Camon 19,Camon 20,Camon 30,Pova 2,Pova 3,Pova 4,Pova 5,Pova 6,Phantom X,Phantom X2,Phantom V Fold"),
 "Huawei":a("P10,P20,P30,P40,P50,P60,Mate 10,Mate 20,Mate 30,Mate 40,Mate 50,Mate 60,Nova 5T,Nova 7,Nova 9,Nova 10,Nova 11,Y6p,Y7a,Y9a"),
-"Honor":a("8X,9X,10,20,50,70,90,200,X6,X7,X8,X9,Magic 4,Magic 5,Magic 6,Magic V2"),
+"Honor":{"Raqamli":a("8,8X,8 Lite,9,9 Lite,9X,10,10 Lite,20,20 Lite,20 Pro,30,30S,30 Pro,50,50 Lite,70,70 Lite,90,90 Lite,200,200 Lite,200 Pro,400,400 Lite,400 Pro,600,600 Lite,600 Pro"),
+"X":a("X5,X5 Plus,X6,X6a,X6b,X6c,X6d,X7,X7a,X7b,X7c,X8,X8a,X8b,X8c,X9,X9a,X9b,X9c,X9d"),
+"Magic":a("Magic 3,Magic 3 Pro,Magic 4,Magic 4 Pro,Magic 5,Magic 5 Lite,Magic 5 Pro,Magic 6,Magic 6 Lite,Magic 6 Pro,Magic 7,Magic 7 Lite,Magic 7 Pro,Magic 8,Magic 8 Lite,Magic 8 Pro,Magic V,Magic Vs,Magic V2,Magic V3,Magic V5,Magic V6")},
 "OnePlus":a("5,6,7,7 Pro,7T,8,8 Pro,8T,9,9 Pro,10 Pro,10T,11,12,13,Nord,Nord 2,Nord CE,Nord 3,Nord 4"),
 "Motorola":a("Moto G7,Moto G8,Moto G9,Moto G10,Moto G20,Moto G30,Moto G50,Moto G60,Moto G73,Moto G84,Edge 20,Edge 30,Edge 40,Edge 50,Razr 40,Razr 50"),
-"iPhone":a("7,7 Plus,8,8 Plus,X,XR,XS,XS Max,11,11 Pro,11 Pro Max,SE 2020,SE 2022,12 mini,12,12 Pro,12 Pro Max,13 mini,13,13 Pro,13 Pro Max,14,14 Plus,14 Pro,14 Pro Max,15,15 Plus,15 Pro,15 Pro Max,16,16 Plus,16 Pro,16 Pro Max,17")
+"iPhone":a("7,7 Plus,8,8 Plus,X,XR,XS,XS Max,11,11 Pro,11 Pro Max,SE 2020,SE 2022,12 mini,12,12 Pro,12 Pro Max,13 mini,13,13 Pro,13 Pro Max,14,14 Plus,14 Pro,14 Pro Max,15,15 Plus,15 Pro,15 Pro Max,16,16 Plus,16 Pro,16 Pro Max,16e,17,17e,17 Pro,17 Pro Max,Air,18 Pro,18 Pro Max")
 };
 var BASE=[["General",[98,96,94]],["Red Dot",[95,92,90]],["2x Scope",[92,88,85]],["4x Scope",[88,84,80]],["AWM",[75,70,65]],["Free Look",[60,55,50]]];
 var VN=["No DPI","DPI","VIP","VIP Pro"],S=[],V=null;
 function hs(n){for(var i=0,h=0;i<n.length;i++)h+=n.charCodeAt(i);return h}
-function tier(s,n){if(/^(S|Note|Z Fold \/ Flip)$/.test(s))return 2;if(/Ultra|Pro|Max|GT|Fold|Flip|\+|Magic|Find|iQOO|Phantom|Zero/.test(n))return 2;return hs(n)%3?0:1}
-function ad(cb){var o=$("ad"),n=AD_SECONDS,b=$("adB");$("adT").textContent=T[17];b.textContent=T[20];b.disabled=true;$("adN").textContent=n;o.hidden=false;
+function tier(b,s,n){if(b=="Samsung"&&/^(S|Note|Z Fold \/ Flip)$/.test(s))return 2;if(/Ultra|Pro|Max|GT|Fold|Flip|\+|Magic|Find|iQOO|Phantom|Zero/.test(n))return 2;return hs(n)%3?0:1}
+function ad(cb){if(!ADS_ON){cb();return}var o=$("ad"),n=AD_SECONDS,b=$("adB");$("adT").textContent=T[17];b.textContent=T[20];b.disabled=true;$("adN").textContent=n;o.hidden=false;
  var t=setInterval(function(){n--;$("adN").textContent=n;if(n<=0){clearInterval(t);b.disabled=false}},1000);
  b.onclick=function(){o.hidden=true;cb()}}
 
@@ -173,7 +200,7 @@ function svgFor(n,v){
 
 function setLang(l){
  lang=l;T=L[l];
- $("tabH").textContent=T[0];$("tabS").textContent=T[1];
+ $("cST").textContent=T[21];$("cSS").textContent=T[22];$("cHT").textContent=T[23];$("cHS").textContent=T[24];$("tTag").textContent=T[25];$("backF").textContent="← "+T[13];
  $("tF").textContent=T[2];$("tL").textContent=T[4];$("tHow").textContent=T[14];
  $("tN").textContent=T[12];$("backS").textContent="← "+T[13];
  $("backH").textContent="← "+T[13];$("tBy").textContent=T[15];
@@ -198,46 +225,59 @@ function drawLayouts(){
  }})
 }
 
+function h32(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function gen(name,t){var x=h32(name);
+ function r(){x=(x+0x6D2B79F5)>>>0;var z=x;z=Math.imul(z^z>>>15,z|1);z^=z+Math.imul(z^z>>>7,z|61);return((z^z>>>14)>>>0)/4294967296}
+ function pick(lo,hi){var p=Math.min(1,r()*0.7+[0,0.15,0.3][t]);return Math.round(lo+(hi-lo)*p)}
+ var g=pick(170,200),rd=pick(165,195),s2=pick(170,200),s4=pick(175,200),sn=pick(30,100),fc=pick(30,100),bt=pick(30,50),dpi=pick(400,850);
+ return{g:g,rd:rd,s2:s2,s4:s4,sn:sn,fc:fc,bt:bt,dpi:dpi}}
+function lab(b,m){return (b=="Samsung"?"Galaxy ":b+" ")+m}
 function drawS(){
  var b=S[0],ser=b&&!Array.isArray(P[b]),need=ser?3:2,o=$("opts"),h=T[10],it;
- $("backS").hidden=!b;$("result").hidden=true;
- $("crumb").textContent=S.concat(V==null?[]:[VN[V]]).join(" › ");
+ $("backS").hidden=false;$("result").hidden=true;
+ var mi=(!Array.isArray(P[b||"x"])&&b)?2:1;
+ $("crumb").textContent=S.map(function(x,i){return b&&i==mi?lab(b,x):x}).concat(V==null?[]:[VN[V]]).join(" › ");
  if(b&&S.length==1&&ser){h=T[16];it=Object.keys(P[b])}
  else if(b&&S.length<need){h=T[11];it=ser?P[b][S[1]]:P[b]}
- else if(b)h=S[S.length-1];
+ else if(b)h=lab(b,S[S.length-1]);
  else it=Object.keys(P);
  $("tB").textContent=h;
  if(V!=null){
-  o.innerHTML="";var m=S[S.length-1],t=tier(ser?S[1]:"",m),f=(hs(m)%5)-2+[0,2,4,6][V];
-  var rows=BASE.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+Math.min(100,r[1][t]+f)+'</td></tr>'});
-  if(V%2)rows.push('<tr><td>DPI</td><td>'+[360,400,420][t]+'</td></tr>');
-  $("vals").innerHTML=rows.join("");$("vals").hidden=false;
+  o.innerHTML="";var m=S[S.length-1],t=tier(b,ser?S[1]:"",m),d=gen(b+" "+m+" "+VN[V],t);
+  var bar=function(n,v){return '<div class="sr"><div class="sh"><span>'+n+'</span><b>'+v+'</b></div><div class="bar"><i style="width:'+Math.round(v/2)+'%"></i></div></div>'};
+  $("vals").innerHTML='<div class="sc">'+bar("General",d.g)+bar("Red Dot",d.rd)+bar("2x Scope",d.s2)+bar("4x Scope",d.s4)+bar("Sniper Scope",d.sn)+bar("Free Camera Button",d.fc)+'</div><div class="sf">◉ Button: '+d.bt+(V%2?'<i></i>☝ DPI: '+d.dpi:'')+'</div>';
+  $("vals").hidden=false;
   var im=$("simg");im.hidden=true;
   im.onload=function(){im.hidden=false;$("vals").hidden=true};
   im.onerror=function(){im.hidden=true;$("vals").hidden=false};
   im.src=IMG+"sens/"+sl(b+" "+m)+"-"+sl(VN[V])+".jpg"+bust();
   $("result").hidden=false;return}
  if(it){
-  o.innerHTML=it.map(function(x){return '<button class="brand">'+x+'</button>'}).join("");
-  [].forEach.call(o.children,function(e){e.onclick=function(){S.push(e.textContent);drawS();window.scrollTo(0,0)}});
+  var ml=b&&S.length<need&&!(S.length==1&&ser);
+  o.innerHTML=it.map(function(x){return '<button class="brand" data-v="'+x+'">'+(ml?lab(b,x):x)+'</button>'}).join("");
+  [].forEach.call(o.children,function(e){e.onclick=function(){S.push(e.getAttribute("data-v"));drawS();window.scrollTo(0,0)}});
  }else{
-  o.innerHTML=VN.map(function(v,i){return '<button class="brand vr"><b>'+v+'</b><br><small>'+(i<2?T[19]:T[18])+'</small></button>'}).join("");
+  o.innerHTML=VN.map(function(v,i){return '<button class="brand vr"><b>'+v+'</b><br><small>'+(i<2||!ADS_ON?T[19]:T[18])+'</small></button>'}).join("");
   [].forEach.call(o.children,function(e,i){e.onclick=function(){if(i<2){V=i;drawS()}else ad(function(){V=i;drawS()})}});
  }
 }
 
-function tab(s){
- $("secH").hidden=s;$("secS").hidden=!s;
- $("tabH").setAttribute("aria-selected",!s);$("tabS").setAttribute("aria-selected",s);
-}
-$("tabH").onclick=function(){tab(false)};
-$("tabS").onclick=function(){tab(true)};
+function show(v){$("home").hidden=v!="home";$("secH").hidden=v!="h";$("secS").hidden=v!="s";
+ if(v=="s"){S=[];V=null;drawS()}
+ if(v=="h"){fing=null;$("stepL").hidden=true;$("stepF").hidden=false}
+ window.scrollTo(0,0)}
+function go(v){try{history.pushState({v:v},"")}catch(e){}show(v)}
+function back(){if(history.state&&history.state.v)history.back();else show("home")}
+window.addEventListener("popstate",function(e){show(e.state&&e.state.v||"home")});
+$("cS").onclick=function(){go("s")};
+$("cH").onclick=function(){go("h")};
+$("backF").onclick=back;
 $("backH").onclick=function(){fing=null;$("stepL").hidden=true;$("stepF").hidden=false};
-$("backS").onclick=function(){if(V!=null)V=null;else S.pop();drawS()};
+$("backS").onclick=function(){if(V!=null)V=null;else if(S.length)S.pop();else{back();return}drawS()};
 $("lang").onchange=function(){setLang(this.value)};
 
 var s="uz";try{s=localStorage.getItem("ffuz-lang")||"uz"}catch(e){}
-setLang(L[s]?s:"uz");
+setLang(L[s]?s:"uz");show("home");
 </script>
 </body>
 </html>
