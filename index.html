@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FF sensitivity UZ</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#090a0f">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:dark;--bg:#090a0f;--card:#13151d;--ink:#eef1f8;--mut:#98a0b3;--line:#262a38;--acc:#ff2e3b;--acc2:#4d8dff;--onacc:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -67,10 +71,14 @@ footer{margin:28px 0 8px;color:var(--mut);font-size:13px;text-align:center}
 .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--acc2),var(--acc))}
 .sf{margin-top:12px;background:var(--card);border-radius:14px;padding:14px;text-align:center;font-weight:700}
 .sf i{display:inline-block;width:1px;height:16px;background:var(--mut);margin:0 14px;vertical-align:middle}
+#splash{position:fixed;inset:0;z-index:99;background:#05070d;display:flex;align-items:center;justify-content:center;transition:opacity .6s}
+#splash img{width:100%;max-width:560px;max-height:100%;object-fit:contain}
+#splash.h{opacity:0;pointer-events:none}
 [hidden]{display:none!important}
 </style>
 </head>
 <body>
+<div id="splash"><img src="splash.jpg" alt=""></div>
 <div class="wrap">
 <header>
  <div>
@@ -278,6 +286,8 @@ $("lang").onchange=function(){setLang(this.value)};
 
 var s="uz";try{s=localStorage.getItem("ffuz-lang")||"uz"}catch(e){}
 setLang(L[s]?s:"uz");show("home");
+setTimeout(function(){var sp=$("splash");if(!sp)return;sp.classList.add("h");setTimeout(function(){sp.remove()},700)},2300);
+if("serviceWorker" in navigator){window.addEventListener("load",function(){try{navigator.serviceWorker.register("sw.js").catch(function(){})}catch(e){}})}
 </script>
 </body>
 </html>
