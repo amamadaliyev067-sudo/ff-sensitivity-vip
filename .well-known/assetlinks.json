@@ -1,8 +1,10 @@
 [{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "uz.asidrj.ffsensivip",
-        "sha256_cert_fingerprints": ["7A:2D:90:FC:D2:F5:85:E5:9F:46:C3:31:A6:03:7A:3D:05:A7:49:78:2B:D2:3D:66:43:8F:5B:23:E1:37:7E:EC"]
-      }
-    }]
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "uz.asidrj.ffsensivip",
+    "sha256_cert_fingerprints": [
+      "0C:7B:15:56:35:72:64:B4:C2:59:42:52:A5:06:0A:4F:27:ED:54:C8:9F:51:29:65:90:AC:9B:F7:89:46:5B:85"
+    ]
+  }
+}]
